@@ -172,7 +172,6 @@ function logUser(){
 $("input[name='loginButton']").live("click",logUser);
  
  $("input[name='Apoiar']").live("click",function(){
-	 alert ("HI");
 	 $(this).attr("disabled","disabled");
 	 $(this).attr("value","Apoiado");
  });
