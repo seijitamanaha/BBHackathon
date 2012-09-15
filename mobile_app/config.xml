@@ -16,7 +16,7 @@
 -->
 <widget xmlns="http://www.w3.org/ns/widgets"
         xmlns:rim="http://www.blackberry.com/ns/widgets"
-        version="1.0.0.0" id="weAchieve" xml:lang="en">
+        version="1.0.0.0" id="weachieve" xml:lang="en">
 
 	<!--
 		Configuration document developer guides
@@ -31,9 +31,7 @@
 
 	<name>weAchieve</name>
 	<description>Social Task Manager</description>
-	<author>Andre Seiji Tamanaha</author>
-	<author href="http://www.andreterron.com">André Vitor Terron</author>
-	<author href="http://twitter.com/#!/AcquaBlue">Thiago Itagaki</author>
+	<author>DIFF</author>
 	<rim:loadingScreen backgroundImage="img/splashScreen.png" foregroundImage="img/splashLogo.png" onLocalPageLoad="true"/>
 	<icon src="img/icon.png"/>
 

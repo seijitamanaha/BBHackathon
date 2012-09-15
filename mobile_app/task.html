@@ -13,12 +13,19 @@
 
 </head>
 <body>
-	<strong>Screens</strong>
-	<ul>
-		<li><a href="task.html">Adicionar Task</a></li>
-		<li>News Feed</li>
-		<li>Perfil</li>
-		<li>Relatório Antigos</li>
-	</ul>
+	<form>
+		<input type="text" name="taskName" placeholder="Tarefa"/>
+		<input type="date" name="taskDeadline" />
+		<input type="image" name="taskGroup" value="0"/>
+		<input type="image" name="taskGroup" value="1"/>
+		<input type="image" name="taskGroup" value="2"/>
+		<input type="image" name="taskGroup" value="3"/>
+		<select name="taskPrivacy">
+			<option value="0">Global</option>
+			<option value="1">Amigos</option>
+			<option value="2">Privado</option>
+		</select>
+		<input type="submit" value="Criar"/>
+	</form>
 </body>
 </html>
