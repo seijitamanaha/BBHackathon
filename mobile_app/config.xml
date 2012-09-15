@@ -16,7 +16,7 @@
 -->
 <widget xmlns="http://www.w3.org/ns/widgets"
         xmlns:rim="http://www.blackberry.com/ns/widgets"
-        version="1.0.0.0" id="" xml:lang="en">
+        version="1.0.0.0" id="weAchieve" xml:lang="en">
 
 	<!--
 		Configuration document developer guides
@@ -29,17 +29,19 @@
 			Smartphone: http://docs.blackberry.com/en/developers/deliverables/32971/Widget_element_1590978_11.jsp
 	-->
 
-	<name>App</name>
-	<description>Description</description>
+	<name>weAchieve</name>
+	<description>Social Task Manager</description>
+	<author>Andre Seiji Tamanaha</author>
+	<author href="http://www.andreterron.com">André Vitor Terron</author>
 	<author href="http://twitter.com/#!/AcquaBlue">Thiago Itagaki</author>
-	<rim:loadingScreen backgroundImage="img/bluebackground.jpg" foregroundImage="img/bluebackground.jpg" onLocalPageLoad="true"/>
-	<icon src="img/Wash.png"/>
+	<rim:loadingScreen backgroundImage="img/splashScreen.png" foregroundImage="img/splashLogo.png" onLocalPageLoad="true"/>
+	<icon src="img/icon.png"/>
 
-	<rim:orientation mode="auto" />
+	<rim:orientation mode="portrait" />
 
 	<content src="index.html"/>
 
-	<rim:category name="Media"/>
+	<rim:category name="Social"/>
 
 	<rim:permissions>
 		<rim:permit>access_shared</rim:permit>
