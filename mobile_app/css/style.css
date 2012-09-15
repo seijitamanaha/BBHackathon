@@ -16,11 +16,31 @@
 
 body {
 	background-image: url('../img/background.png');
+	background-repeat: repeat-x;
+	/* background-color: #4f4f4f; */
+	background-attachment: fixed;
 	padding: 0px;
 	margin: 0px;
 	font-family: Calibri;
 	font-size: 50px;
 	width: 768px;
+}
+
+.login-txt {
+	font-size: 40px;
+}
+
+.login-button {
+	background-image: url("../img/okbutton.png");
+	width: 160px;
+	height: 100px;
+	padding: 0px;
+	left: 50%;
+	position: relative;
+	border: none;
+	margin-top: 24px;
+	margin-bottom: 24px;
+	margin-left: -80px;
 }
 
 [type="text"], [type="password"] {
@@ -29,9 +49,9 @@ body {
 	box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.5) inset;
 	-webkit-appearance: none;
 	border: solid 1px #888888;
-	margin-bottom: 32px;
 	font-family: Calibri;
 	font-size: 50px;
+	color: #333333;
 }
 
 .window_holder {
@@ -49,8 +69,9 @@ body {
 	background-image:url('../img/gradient.png');
 	background-repeat:repeat-x;
 	background-size: contain;
+	padding: 16px 32px 16px 32px;
 }
 
-.window_top, .window_contents {
-	padding: 16px 32px 16px 32px;
+.window_contents {
+	padding: 24px 32px 24px 32px;
 }
