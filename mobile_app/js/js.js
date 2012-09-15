@@ -16,10 +16,6 @@ var isOnline = false;
 var loginID = localStorage.getItem("loginID");
 var loginUser = localStorage.getItem("loginUser");
 
-jsonLogin({
-	"userID":
-});
-
 window.addEventListener("offline",function(e){
 	isOnline = false;
 },false);
@@ -122,11 +118,16 @@ function logUser(){
 	var user = new Object();
 	user.userLogin = $("input[name='loginUser']").val();
 	user.userPassword = $("input[name='loginPassword']").val();
-	$.ajax({
+	
+	if (user.userLogin == localStorage.getItem("fakeLogin") && user.userPassword == localStorage.getItem("fakePass")){
+		window.location = "index.html";
+	}
+/*	$.ajax({
 		cache: false,
 		data: JSON.stringify(user),
 		dataType: "jsonp",
 		jsonp: false,
+		jsonpCallback: "jsonLogin",
 		crossDomain: true,
 		url: "http://andreterron.com/weachieve/login.php",
 		type: "POST",
@@ -147,7 +148,10 @@ function logUser(){
 					break;
 			}
 		}
-	});
+		success: function(response){
+			console.log(response);
+		}
+	});*/
 }
 
 $("input[name='loginButton']").live("click",logUser);
