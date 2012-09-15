@@ -35,7 +35,7 @@ function showNotification(error){
 function sendTask(task){
 	if (!localStorage.getItem("counterID")) localStorage.setItem("counterID",1);
 	else localStorage.setItem("counterID",parseInt(localStorage.getItem("counterID"))+1);
-	task.ID = parseInt(localStorage.getItem("counterID"));
+	task.taskID = parseInt(localStorage.getItem("counterID"));
 	return true;
 /*	$.ajax({
 		cache: false,
@@ -68,7 +68,7 @@ function createTask(){
 	tempTask.logID = loginID;
 	tempTask.taskName = $("input[name='taskName']").val();
 	tempTask.taskGroup = $("input[name='taskGroup']").val();
-	tempTask.taskPrivacy = $("select[name='taskPrivacy]").val();
+	tempTask.taskPrivacy = $("select[name='taskPrivacy']").val();
 	tempTask.taskDeadline = $("input[name='taskDeadline']").val();
 	 
 	// Se estiver online envia a Task para o servidor
@@ -80,12 +80,15 @@ function createTask(){
 	delete tempTask.userID;
 	
 	// Se não tiver enviado a Task para o servidor armazena a Task JSON localmente em um arquivo temporário compartilhado
-	if (!taskSent) tempTasks = tempTasks+";"+JSON.stringify(tempTask);
+//	if (!taskSent) tempTasks = tempTasks+";"+JSON.stringify(tempTask);
 	// Se a Task foi recebida pelo servidor, grava a Task JSON localmente em uma variavel própria
-	else localStorage.setItem(tempTask.taskID,JSON.stringify(tempTask));
+//	else
+	localStorage.setItem(tempTask.taskID.toString(),JSON.stringify(tempTask));
 	
 	// Grava as Tasks temporárias novamente
-	localStorage.setItem("tempTasks",tempTasks);
+//	localStorage.setItem("tempTasks",tempTasks);
+	alert ("Bye:"+localStorage.getItem("counterID"));
+	window.location = "viewTask.html";
 }
 
 function sendTempTasks(){
@@ -113,6 +116,8 @@ function sendTempTasks(){
 	// Armazena localmente as Tasks temporariamente
 	localStorage.setItem("tempTasks",tempTaskString);
 }
+
+$("input[value='Criar']").click(createTask);
 
 /*
  ****	LOGIN.html JS
