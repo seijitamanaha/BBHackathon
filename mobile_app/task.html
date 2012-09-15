@@ -10,7 +10,7 @@
 	<script src="js/jQuery.js"></script>
 	<script src="js/jQuery.Mobile.js"></script>
 	<script src="js/js.js"></script>
-	<title>Blackberry Hackathon</title>
+	<title>Create Task - WeAchieve</title>
 
 </head>
 <body>
@@ -18,21 +18,32 @@
 		<div data-role="header">
 		</div>
 		<div data-role="content">
-			<div id="task">
-				<form>
-					<input type="text" name="taskName" placeholder="Tarefa" required/>
-					<input type="date" name="taskDeadline" placeholder"Prazo (Opcional)" />
-					<input type="image" name="taskGroup" value="0"/>
-					<input type="image" name="taskGroup" value="1"/>
-					<input type="image" name="taskGroup" value="2"/>
-					<input type="image" name="taskGroup" value="3"/>
-					<select name="taskPrivacy" required="required">
-						<option value="0">Global</option>
-						<option value="1">Amigos</option>
-						<option value="2">Privado</option>
-					</select>
-					<input type="button" value="Criar" onClick="createTask();"/>
-				</form>
+			<div id="task"class="window_holder">
+				<div class="window_container">
+					<div class="window_top">
+						Login
+					</div>
+					<div class="window_contents">
+						<form>
+							Task:
+							<input type="text" name="taskName" placeholder="Tarefa" required/>
+							Date:
+							<input type="date" name="taskDeadline" placeholder"Prazo (Opcional)" />
+							Tipo:<br/>
+							<input type="image" name="taskGroup" value="0" src="img/pessoal.png"/>
+							<input type="image" name="taskGroup" value="1" src="img/lazer.png"/>
+							<input type="image" name="taskGroup" value="2" src="img/profissional.png"/>
+							<input type="image" name="taskGroup" value="3" src="img/saude.png"/>
+							Privacidade:<br/>
+							<select name="taskPrivacy" required="required">
+								<option value="0">Global</option>
+								<option value="1">Amigos</option>
+								<option value="2">Privado</option>
+							</select><br/>
+							<input class="login-button" type="button" value="" onClick="createTask();"/>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
