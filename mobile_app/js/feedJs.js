@@ -13,13 +13,17 @@
  */
 
 // Recebe os Feeds em RealTime
-var feedSource = new EventSource("");
+/*var feedSource = new EventSource("");
 feedSource.onmessage = function(event){
 	var feedData = null;
 	$("#newsfeed").prepend();
+}*/
+function addFeed(){
 }
 
 // Ao clicar em um feed
 $(".feed").live("click",function(){
 	//...
 });
+
+$(document).read(addFeed);

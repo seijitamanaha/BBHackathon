@@ -35,7 +35,7 @@
 	<rim:loadingScreen backgroundImage="img/splashScreen.png" foregroundImage="img/splashLogo.png" onLocalPageLoad="true"/>
 	<icon src="img/icon.png"/>
 
-	<rim:orientation mode="portrait" />
+	<rim:orientation mode="landscape" />
 
 	<content src="index.html"/>
 

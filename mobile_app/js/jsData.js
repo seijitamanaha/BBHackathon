@@ -15,3 +15,8 @@
 localStorage.setItem("fakeLogin","blackberry");
 localStorage.setItem("fakePass","1234");
 localStorage.setItem("fakeID","1");
+
+localStorage.setItem("fakeTarefaTitulo1","Coler 10km");
+localStorage.setItem("fakeTarefaData1","20/09/2012");
+localStorage.setItem("fakeTarefaTitulo2","Pegar o Coelhinho da Mônica");
+localStorage.setItem("fakeTarefaData2","15/09/2012");
