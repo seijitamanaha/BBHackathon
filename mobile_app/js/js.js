@@ -28,6 +28,10 @@ function showNotification(error){
 	// Mostra notificação
 }
 
+function apoiar(){
+	
+}
+
 
 /*
  ****	TASK.html JS
@@ -167,6 +171,10 @@ function logUser(){
 
 $("input[name='loginButton']").live("click",logUser);
  
+ $("input[name='Apoiar']").live("click",function(){
+	 $(this).attr("disabled","disabled");
+	 $(this).attr("value","Apoiado");
+ });
  /*
  ****	General JS
  */ 
