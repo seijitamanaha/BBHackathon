@@ -12,7 +12,6 @@
 #topbar {
 	top: 0px;
 	left: 0px;
-	height: 102px;
 }
 
 body {
@@ -20,24 +19,30 @@ body {
 	padding: 0px;
 	margin: 0px;
 	font-family: Calibri;
-	font-size: 25px;
+	font-size: 50px;
 	width: 768px;
 }
 
 [type="text"], [type="password"] {
 	display: block;
 	width: 100%;
+	box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.5) inset;
+	-webkit-appearance: none;
+	border: solid 1px #888888;
+	margin-bottom: 32px;
+	font-family: Calibri;
+	font-size: 50px;
 }
 
 .window_holder {
-	padding: 50px;
+	padding: 20px;
 }
 
 .window_container{
 	border-radius: 5px;
 	background-color: #f1f1f1;
 	overflow: hidden;
-	box-shadow: 5px 5px 4px 0px rgba(0, 0, 0, 0.7);
+	box-shadow: 5px 5px 4px 0px rgba(0, 0, 0, 0.5);
 }
 
 .window_top {
@@ -47,5 +52,5 @@ body {
 }
 
 .window_top, .window_contents {
-	padding: 5px 20px 5px 20px;
+	padding: 16px 32px 16px 32px;
 }
