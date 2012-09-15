@@ -17,11 +17,10 @@
 	 var i = 1;
 	 while (localStorage.getItem(i.toString()) !== null ){
 		 task = localStorage.getItem(i.toString());
-		 alert (task);
 		 task = jQuery.parseJSON(task);
-		 $("#viewtasks").prepend("<div class='taskLine'><div class='taskName'>"+task.taskName+"</div><div class='taskDeadline'>"+task.taskDeadline+"</div></div>");
+		 $("#viewtasks").prepend("<div class='taskLine'><div class='taskName'>"+task.taskName+"</div><div class='taskDeadline'>"+task.taskDeadline+"</div><div class='taskControl'><input type='button' value='Feito'/><input type='button' value='Apagar'></div></div>");
 		 i++;
 	 }
  }
  
- $(document).ready(makeTasks());
+ $(document).ready(makeTasks);
