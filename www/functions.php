@@ -52,7 +52,7 @@ function dbclose()
 	}
 }
 
-function create_task() {
+function create_task(name, endtime = null, privacy = 0) {
 	dbconnect();
 	if ($owner) {
 		//dodebug("OWNER DEFINED");
