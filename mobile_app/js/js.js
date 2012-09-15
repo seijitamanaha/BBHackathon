@@ -13,6 +13,12 @@
  */ 
 
 var isOnline = false;
+var loginID = localStorage.getItem("loginID");
+var loginUser = localStorage.getItem("loginUser");
+
+jsonLogin({
+	"userID":
+});
 
 window.addEventListener("offline",function(e){
 	isOnline = false;
@@ -35,7 +41,8 @@ function sendTask(task){
 		cache: false,
 		data: JSON.stringify(task),
 		dataType: "json",
-		url: "",
+		url: "http://andreterron.com/weachieve/create.php",
+		type: "POST",
 		complete: function(xhr,status){
 			switch(status){
 				case "success":
@@ -55,9 +62,10 @@ function sendTask(task){
  
 function createTask(){
 	var tempTasks = localStorage.getItem("tempTasks");
-	var tempTask;
+	var tempTask = new Object();
 	 
 	// Cria objeto da Task atual
+	tempTask.logID = loginID;
 	tempTask.taskName = $("input[name='taskName']").val();
 	tempTask.taskGroup = $("input[name='taskGroup']").val();
 	tempTask.taskPrivacy = $("select[name='taskPrivacy]").val();
@@ -67,6 +75,9 @@ function createTask(){
 	if (isOnline){
 		taskSent = sendTask(tempTask);
 	}
+	
+	// Apaga a userID para economizar espaço de armazenamento
+	delete tempTask.userID;
 	
 	// Se não tiver enviado a Task para o servidor armazena a Task JSON localmente em um arquivo temporário compartilhado
 	if (!taskSent) tempTasks = tempTasks+";"+JSON.stringify(tempTask);
@@ -86,9 +97,10 @@ function sendTempTasks(){
 		// Para cada task temporária, envia-a para o servidor e exclui caso seja enviado
 		for (var n in tempTasks){
 			tempTasks[n] = jQuery.parseJSON(tempTasks[n]);
+			tempTasks[n].logID = loginID;
 			taskSent = sendTask(tempTasks[n]);
-			if (taskSent)
-				delete tempTasks[n];
+			if (taskSent) delete tempTasks[n];
+			else delete tempTasks[n].logID;
 		}
 	}
 	
@@ -100,4 +112,50 @@ function sendTempTasks(){
 	}
 	// Armazena localmente as Tasks temporariamente
 	localStorage.setItem("tempTasks",tempTaskString);
-} 
+}
+
+/*
+ ****	LOGIN.html JS
+ */
+
+function logUser(){
+	var user = new Object();
+	user.userLogin = $("input[name='loginUser']").val();
+	user.userPassword = $("input[name='loginPassword']").val();
+	$.ajax({
+		cache: false,
+		data: JSON.stringify(user),
+		dataType: "jsonp",
+		jsonp: false,
+		crossDomain: true,
+		url: "http://andreterron.com/weachieve/login.php",
+		type: "POST",
+		complete: function(xhr,status){
+			switch(status){
+				case "success":
+					alert ("success");
+					return true;
+					break;
+				case "error":
+				case "notmodified":
+				case "timeout":
+				case "abort":
+				case "parsererror":
+					alert (status+"\n"+xhr);
+					console.log(xhr);
+					return false;
+					break;
+			}
+		}
+	});
+}
+
+$("input[name='loginButton']").live("click",logUser);
+ 
+ /*
+ ****	General JS
+ */ 
+
+$(document).ready(function(){
+	if ((!loginID || !loginUser) && window.location.pathname!="/login.html" ) window.location="login.html";
+});

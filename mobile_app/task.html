@@ -6,26 +6,34 @@
 	<meta name="viewport" content="width=device-width,target-densitydpi=device-dpi,user-scalable=no,initial-scale=1.0">
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 	<link href="css/jQuery.Mobile.css" rel="stylesheet" type="text/css">
-	<script src="js/js.js"></script>
 	<script src="js/jQuery.js"></script>
 	<script src="js/jQuery.Mobile.js"></script>
+	<script src="js/js.js"></script>
 	<title>Blackberry Hackathon</title>
 
 </head>
 <body>
-	<form>
-		<input type="text" name="taskName" placeholder="Tarefa"/>
-		<input type="date" name="taskDeadline" />
-		<input type="image" name="taskGroup" value="0"/>
-		<input type="image" name="taskGroup" value="1"/>
-		<input type="image" name="taskGroup" value="2"/>
-		<input type="image" name="taskGroup" value="3"/>
-		<select name="taskPrivacy">
-			<option value="0">Global</option>
-			<option value="1">Amigos</option>
-			<option value="2">Privado</option>
-		</select>
-		<input type="submit" value="Criar"/>
-	</form>
+	<div data-role="page">
+		<div data-role="header">
+		</div>
+		<div data-role="content">
+			<div id="task">
+				<form>
+					<input type="text" name="taskName" placeholder="Tarefa" required/>
+					<input type="date" name="taskDeadline" placeholder"Prazo (Opcional)" />
+					<input type="image" name="taskGroup" value="0"/>
+					<input type="image" name="taskGroup" value="1"/>
+					<input type="image" name="taskGroup" value="2"/>
+					<input type="image" name="taskGroup" value="3"/>
+					<select name="taskPrivacy" required="required">
+						<option value="0">Global</option>
+						<option value="1">Amigos</option>
+						<option value="2">Privado</option>
+					</select>
+					<input type="button" value="Criar" onClick="createTask();"/>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
