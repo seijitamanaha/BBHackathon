@@ -17,30 +17,29 @@
 			</div>
 		</div>
 		<div data-role="content">
-			<div id="task"class="window_holder">
+			<div id="profile" class="window_holder">
 				<div class="window_container">
 					<div class="window_top">
-						Login
+						Task List
 					</div>
 					<div class="window_contents">
-						<form>
-							Task:
-							<input type="text" name="taskName" placeholder="Tarefa" required/>
-							Date:
-							<input type="date" name="taskDeadline" placeholder"Prazo (Opcional)" />
-							Tipo:<br/>
-							<input type="image" name="taskGroup" value="0" src="img/pessoal.png"/>
-							<input type="image" name="taskGroup" value="1" src="img/lazer.png"/>
-							<input type="image" name="taskGroup" value="2" src="img/profissional.png"/>
-							<input type="image" name="taskGroup" value="3" src="img/saude.png"/>
-							Privacidade:<br/>
-							<select name="taskPrivacy" required="required">
-								<option value="0">Global</option>
-								<option value="1">Amigos</option>
-								<option value="2">Privado</option>
-							</select><br/>
-							<input class="login-button" type="button" value="" onClick="createTask();"/>
-						</form>
+						<div id="userPhoto"><img src="img/user1.jpg"/></div>
+						<div id="userInfo">
+							<div id="userName">Cebolinha</div>
+							<div id="userFriends">
+								<div class="userFriend"><a href="cebolinha.html"><img src="img/user2.jpg" width=100 height=100/></a></div>
+							</div>
+						</div>
+						<div id="viewtasks">
+							<div class='taskLine'>
+								<div class='taskName'>Pegar o coelhinho da Mônica</div>
+								<div class='taskDeadline'>15/09/2012</div>
+								<div class='taskControl'>
+									<input type='button' value='Apoiar' name='Apoiar'/>
+								</div>
+							</div>
+							<div class='taskLine'><div class='taskName'>Coler 10km</div><div class='taskDeadline'>20/09/2012</div><div class='taskControl'><input type='button' value='Apoiar' name='Apoiar'/></div></div>
+						</div>
 					</div>
 				</div>
 			</div>

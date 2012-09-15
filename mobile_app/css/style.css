@@ -27,6 +27,11 @@ body {
 	height: 1280px;
 }
 
+.taskLine {
+	background-color: #d3ff8e;
+	margin-bottom: 16px;
+}
+
 .login-txt {
 	font-size: 32px;
 }
