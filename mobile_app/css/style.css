@@ -20,7 +20,13 @@ body {
 	padding: 0px;
 	margin: 0px;
 	font-family: Calibri;
+	font-size: 25px;
 	width: 768px;
+}
+
+[type="text"], [type="password"] {
+	display: block;
+	width: 100%;
 }
 
 .window_holder {
@@ -41,5 +47,5 @@ body {
 }
 
 .window_top, .window_contents {
-	padding: 10px;
+	padding: 25px;
 }
