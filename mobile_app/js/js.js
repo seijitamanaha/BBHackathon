@@ -33,7 +33,11 @@ function showNotification(error){
  ****	TASK.html JS
  */
 function sendTask(task){
-	$.ajax({
+	if (!localStorage.getItem("counterID")) localStorage.setItem("counterID",1);
+	else localStorage.setItem("counterID",parseInt(localStorage.getItem("counterID"))+1);
+	task.ID = parseInt(localStorage.getItem("counterID"));
+	return true;
+/*	$.ajax({
 		cache: false,
 		data: JSON.stringify(task),
 		dataType: "json",
@@ -53,7 +57,7 @@ function sendTask(task){
 					break;
 			}
 		}
-	 });
+	 });*/
 }
  
 function createTask(){
@@ -68,9 +72,9 @@ function createTask(){
 	tempTask.taskDeadline = $("input[name='taskDeadline']").val();
 	 
 	// Se estiver online envia a Task para o servidor
-	if (isOnline){
+//	if (isOnline){
 		taskSent = sendTask(tempTask);
-	}
+//	}
 	
 	// Apaga a userID para economizar espaço de armazenamento
 	delete tempTask.userID;
@@ -120,6 +124,8 @@ function logUser(){
 	user.userPassword = $("input[name='loginPassword']").val();
 	
 	if (user.userLogin == localStorage.getItem("fakeLogin") && user.userPassword == localStorage.getItem("fakePass")){
+		localStorage.setItem("loginID",localStorage.getItem("fakeID"));
+		localStorage.setItem("loginUser",localStorage.getItem("fakeUser"));
 		window.location = "index.html";
 	}
 /*	$.ajax({
