@@ -4,14 +4,10 @@ $con_number = 0;
 $con = null;
 $debug = false;
 
-/*
+include_once("functions/error.php");
+include_once("functions/user.php");
+include_once("functions/task.php");
 
-** ERROR IDs **
-1 - taskname not defined
-
-*/
-
-final ERROR_NO_TASKNAME = 1;
 
 function dodebug($txt) {
 	global $debug;
@@ -20,8 +16,7 @@ function dodebug($txt) {
 	}
 }
 
-function dbconnect()
-{
+function dbconnect() {
 	global $con;
 	global $con_number;
 	if ($con != null)
@@ -40,8 +35,7 @@ function dbconnect()
 	return $con;
 }
 
-function dbclose()
-{
+function dbclose() {
 	global $con;
 	global $con_number;
 	if ($con_number == 1)
@@ -60,65 +54,5 @@ function dbclose()
 	}
 }
 
-function getErrorName($error_id) {
-	$str = "Erro $error_id : ";
-	switch ($error_id) {
-		case ERROR_NO_TASKNAME:
-			$str .= "Nome da task não definido";
-			break;
-		default:
-			$str .= "Unknown";
-			break;
-	}
-	return $str;
-}
-
-function create_task($json) {
-	$jary = json_decode($json, true);
-	$ret = array();
-	
-	if (!isset($jary['taskName'])) {
-		$ret['error'] = array('id'=>ERROR_NO_TASKNAME, 'msg'=>getErrorName(ERROR_NO_TASKNAME));
-		return json_encode($ret);
-	}
-	
-	$name = $jary['taskName'];
-	$deadline = isset($jary['taskDeadline']) ? $jary['taskDeadline'] : "NULL";
-	$complete = isset($jary['taskComplete']) ? $jary['taskComplete'] : "0";
-	$type = isset($jary['taskType']) ? $jary['taskType'] : "0";
-	$group = isset($jary['taskGroup']) ? $jary['taskGroup'] : "0";
-	$privacy = isset($jary['taskPrivacy']) ? $jary['taskPrivacy'] : "0";
-	$owner = 0; /* TODO PEGAR ID DO USUARIO LOGADO */
-	$creation = gmdate("T-m-d H:i:s");
-	
-	dbconnect();
-	$query = "INSERT INTO  `bbhackathon`.`task` (
-			`id`, `name`, `deadline`, `kids`, `parents`, `type`, `attr`, `privacy`, `owner`, `creation`
-			) VALUES (
-			NULL, '$jary[taskName]', '$identifier', '', '[1]$folder', '$typestr', '$attrstr', '', '$owner', '$creation');";
-	dodebug("DEBUG: QUERY: $query");
-	$result = mysql_query($query, $con);
-	if ($result) {
-		$file_id = mysql_insert_id($con);
-		//dodebug("INSERTION SUCCEDED! FID = $file_id");
-		$str = push_str_array($finfo['kids'], $file_id);
-		$query = "UPDATE `bbhackathon`.`file` SET `file`.`kids` = '$str' WHERE `file`.`id` = $folder LIMIT 1 ;";
-		$result = mysql_query($query, $con);
-		if (!$result) {
-			dodebug("ERROR: KIDS UPDATE ERROR!");
-			//ERRO PURAMENTE DB
-		}
-		dbclose();
-		return $file_id;
-	} else {
-		dodebug("ERROR AT CREATION");
-		// ERRO DB
-		dbclose();
-		return 0;
-	}
-	dodebug("WEIRD ERROR");
-	dbclose();
-	return 0;
-}
 
 ?>
