@@ -17,19 +17,29 @@
 			</div>
 		</div>
 		<div data-role="content">
-			<img src="img/logo.png"></img>
-			<div id="login" class="window_holder">
+			<div id="task"class="window_holder">
 				<div class="window_container">
 					<div class="window_top">
 						Login
 					</div>
 					<div class="window_contents">
 						<form>
-							<text class="login-txt">Username:</text>
-							<input type="text" name="loginUser"/>
-							<text class="login-txt">Password:</text>
-							<input type="password" name="loginPassword"/>
-							<input class="login-button" type="button" value="" name="loginButton"/>
+							Task:
+							<input type="text" name="taskName" placeholder="Tarefa" required/>
+							Date:
+							<input type="date" name="taskDeadline" placeholder"Prazo (Opcional)" />
+							Tipo:<br/>
+							<input type="image" name="taskGroup" value="0" src="img/pessoal.png"/>
+							<input type="image" name="taskGroup" value="1" src="img/lazer.png"/>
+							<input type="image" name="taskGroup" value="2" src="img/profissional.png"/>
+							<input type="image" name="taskGroup" value="3" src="img/saude.png"/>
+							Privacidade:<br/>
+							<select name="taskPrivacy" required="required">
+								<option value="0">Global</option>
+								<option value="1">Amigos</option>
+								<option value="2">Privado</option>
+							</select><br/>
+							<input class="login-button" type="button" value="" onClick="createTask();"/>
 						</form>
 					</div>
 				</div>

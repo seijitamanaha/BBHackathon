@@ -27,7 +27,7 @@ body {
 }
 
 .login-txt {
-	font-size: 40px;
+	font-size: 32px;
 }
 
 .login-button {
@@ -43,7 +43,7 @@ body {
 	margin-left: -80px;
 }
 
-[type="text"], [type="password"] {
+[type="text"], [type="password"], [type="date"], select {
 	display: block;
 	width: 100%;
 	box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.5) inset;
@@ -52,6 +52,9 @@ body {
 	font-family: Calibri;
 	font-size: 50px;
 	color: #333333;
+	padding: 12px;
+	margin-bottom: 8px;
+	margin-top: 8px;
 }
 
 .window_holder {
@@ -73,5 +76,6 @@ body {
 }
 
 .window_contents {
-	padding: 24px 32px 24px 32px;
+	font-size: 32px;
+	padding: 24px 26px 24px 26px;
 }
