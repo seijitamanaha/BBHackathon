@@ -10,8 +10,36 @@
 @charset "utf-8";
 
 #topbar {
-	position: fixed;
 	top: 0px;
 	left: 0px;
-	background-image: url('img/background.png');
+	height: 102px;
+}
+
+body {
+	background-image: url('../img/background.png');
+	padding: 0px;
+	margin: 0px;
+	font-family: Calibri;
+	width: 768px;
+}
+
+.window_holder {
+	padding: 50px;
+}
+
+.window_container{
+	border-radius: 5px;
+	background-color: #f1f1f1;
+	overflow: hidden;
+	box-shadow: 5px 5px 4px 0px rgba(0, 0, 0, 0.7);
+}
+
+.window_top {
+	background-image:url('../img/gradient.png');
+	background-repeat:repeat-x;
+	background-size: contain;
+}
+
+.window_top, .window_contents {
+	padding: 10px;
 }
