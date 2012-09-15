@@ -2,7 +2,8 @@
 
 /*
 
-http://www.nossosite.com /create.php?name=####### &endtime=DD/MM/YYYY&privacy=#
+http://www.nossosite.com /create.php?json="#####"
+
 
 name = string
 endtime = DD/MM/YYYY
@@ -11,8 +12,9 @@ privacy = 	0 - public
 			2 - private
 */
 
+include_once("functions.php");
 
-
-/* EH NUI! */
-
+if (isset($_REQUEST['json'])) {
+	echo json_encode(create_task($_REQUEST['json']));
+}
 ?>

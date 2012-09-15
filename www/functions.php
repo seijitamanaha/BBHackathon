@@ -4,6 +4,14 @@ $con_number = 0;
 $con = null;
 $debug = false;
 
+/*
+
+** ERROR IDs **
+1 - taskname not defined
+
+*/
+
+final ERROR_NO_TASKNAME = 1;
 
 function dodebug($txt) {
 	global $debug;
@@ -22,7 +30,7 @@ function dbconnect()
 		return $con;
 	}
 	$hostname='bbhackathon.db.8718060.hostedresource.com';
-	$username='bbhackathon';
+	$username='bbhackathon'; //bbhackathon@72.167.233.37
 	$password='EC011bbdb';
 	$dbname='bbhackathon';
 
@@ -52,68 +60,42 @@ function dbclose()
 	}
 }
 
-function create_task(name, endtime = null, privacy = 0) {
+function getErrorName($error_id) {
+	$str = "Erro $error_id : ";
+	switch ($error_id) {
+		case ERROR_NO_TASKNAME:
+			$str .= "Nome da task não definido";
+			break;
+		default:
+			$str .= "Unknown";
+			break;
+	}
+	return $str;
+}
+
+function create_task($json) {
+	$jary = json_decode($json, true);
+	$ret = array();
+	
+	if (!isset($jary['taskName'])) {
+		$ret['error'] = array('id'=>ERROR_NO_TASKNAME, 'msg'=>getErrorName(ERROR_NO_TASKNAME));
+		return json_encode($ret);
+	}
+	
+	$name = $jary['taskName'];
+	$deadline = isset($jary['taskDeadline']) ? $jary['taskDeadline'] : "NULL";
+	$complete = isset($jary['taskComplete']) ? $jary['taskComplete'] : "0";
+	$type = isset($jary['taskType']) ? $jary['taskType'] : "0";
+	$group = isset($jary['taskGroup']) ? $jary['taskGroup'] : "0";
+	$privacy = isset($jary['taskPrivacy']) ? $jary['taskPrivacy'] : "0";
+	$owner = 0; /* TODO PEGAR ID DO USUARIO LOGADO */
+	$creation = gmdate("T-m-d H:i:s");
+	
 	dbconnect();
-	if ($owner) {
-		//dodebug("OWNER DEFINED");
-		// Caso uma pasta não tenha sido definida, escolhe a home do usuário
-		$query = "SELECT `home` FROM `bbhackathon`.`users` WHERE `users`.`id` = $owner;";
-		$result = mysql_query($query, $con);
-		if ($result && $uinfo = mysql_fetch_array($result)) {
-			$homefolder = $uinfo['home'];
-			//dodebug("USER HOMEFOLDER: $homefolder");
-			if (!$folder) {
-				//dodebug("FOLDER NOT DEFINED");
-				$folder = $uinfo['home'];
-			}
-		} else {
-			//dodebug("USER NOT FOUND");
-			if (!$folder) {
-				//dodebug("FOLDER NOT FOUND EXIT!");
-				dbclose();
-				return 0;
-			} else {
-				$owner = null;
-			}
-		}
-	}
-	$fid = ($folder != null ? $folder : $homefolder);
-	//dodebug("FID = $fid");
-	// Caso o dono não tenha sido definido, escolhe o dono da pasta
-	$query = "SELECT `id`, `kids`, `owner` FROM `bbhackathon`.`file` WHERE `file`.`id` = $fid;";
-	$result = mysql_query($query, $con);
-	if ($result && $finfo = mysql_fetch_array($result)) {
-		//dodebug("PARENT FOLDER FOUND");
-		if (!$owner) {
-			//dodebug("USER NOT DEFINED");
-			$owner = $finfo['owner'];
-		}
-	} else {
-		//dodebug("PARENT FOLDER NOT FOUND");
-		if (!$owner || $fid == $homefolder) {
-			//dodebug("USER NOT DEFINED");
-			dbclose();
-			return 0;
-		} else  {
-			//dodebug("SEARCHING USER HOME FOLDER");
-			$folder = $homefolder;
-			$query = "SELECT `id`, `kids`, `owner` FROM `bbhackathon`.`file` WHERE `file`.`id` = $folder;";
-			if (!($result && $finfo = mysql_fetch_array($result))) {
-				//dodebug("USER HOME FOLDER NOT FOUND");
-				dbclose();
-				return 0;
-			}
-		}
-	}
-	//dodebug("PRE-PROCESSING DONE");
-	$attrstr = json_encode($attr);
-	$typestr = write_str_array(array_keys($attr));
-	$creation = gmdate("Y-m-d H:i:s");
-	$folder = $finfo['id'];
-	$query = "INSERT INTO  `bbhackathon`.`file` (
-			`id`, `name`, `identifier`, `kids`, `parents`, `type`, `attr`, `privacy`, `owner`, `creation`
+	$query = "INSERT INTO  `bbhackathon`.`task` (
+			`id`, `name`, `deadline`, `kids`, `parents`, `type`, `attr`, `privacy`, `owner`, `creation`
 			) VALUES (
-			NULL, '$name', '$identifier', '', '[1]$folder', '$typestr', '$attrstr', '', '$owner', '$creation');";
+			NULL, '$jary[taskName]', '$identifier', '', '[1]$folder', '$typestr', '$attrstr', '', '$owner', '$creation');";
 	dodebug("DEBUG: QUERY: $query");
 	$result = mysql_query($query, $con);
 	if ($result) {
