@@ -19,6 +19,7 @@ feedSource.onmessage = function(event){
 	$("#newsfeed").prepend();
 }*/
 function addFeed(){
+	
 }
 
 // Ao clicar em um feed
