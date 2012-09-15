@@ -27,6 +27,12 @@ body {
 	height: 1280px;
 }
 
+.bottom {
+	position: fixed;
+	top: 1150px;
+	left: 0px;
+}
+
 .taskLine {
 	background-color: #d3ff8e;
 	margin-bottom: 16px;
